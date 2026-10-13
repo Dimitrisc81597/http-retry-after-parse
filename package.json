@@ -1,0 +1,17 @@
+{
+  "name": "http-retry-after-parse",
+  "version": "0.1.0",
+  "description": "Parses an HTTP Retry-After header value into a concrete Date (when to retry) or a delay in milliseconds (how long to wait).",
+  "type": "module",
+  "main": "src/index.js",
+  "exports": "./src/index.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": [],
+  "license": "ISC",
+  "dependencies": {}
+}
