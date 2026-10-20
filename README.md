@@ -25,3 +25,10 @@ Every retrying HTTP client eventually re-implements this parsing, usually badly:
 - `delta-seconds` must be a bare non-negative integer (`1*DIGIT`). `+30`, `-30`, and `1.5` return `null` rather than being coerced.
 - `parseRetryAfterDelay` clamps past HTTP-dates to `0` so the result can be handed straight to `setTimeout`. If you need the raw signed difference, call `parseRetryAfter(...).getTime() - Date.now()` yourself.
 - A `clock` argument (defaulting to `Date.now`) is used only to interpret `delta-seconds`; HTTP-date values name a fixed instant and do not depend on it.
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
